@@ -24,7 +24,6 @@
 #include <czmq.h>
 
 //  MLM version macros for compile-time API detection
-
 #define MLM_VERSION_MAJOR 1
 #define MLM_VERSION_MINOR 1
 #define MLM_VERSION_PATCH 0
@@ -46,9 +45,13 @@
 #   define MLM_EXPORT
 #endif
 
+//  Project has no stable classes, so we build the draft API
+#undef  MLM_BUILD_DRAFT_API
+#define MLM_BUILD_DRAFT_API
+
 //  Opaque class structures to allow forward references
 //  These classes are stable or legacy and built in all releases
-//  Draft classes are by default not built stable releases
+//  Draft classes are by default not built in stable releases
 #ifdef MLM_BUILD_DRAFT_API
 typedef struct _mlm_proto_t mlm_proto_t;
 #define MLM_PROTO_T_DEFINED
